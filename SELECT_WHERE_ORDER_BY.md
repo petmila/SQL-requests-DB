@@ -1,5 +1,7 @@
 #### Теория
 * SELECT
 
-SELECT P.Name
+
+    SELECT P.Name
+
 
