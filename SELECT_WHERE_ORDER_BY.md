@@ -1,5 +1,7 @@
 ## Теория
 ### SELECT
+Начальная часть запроса.
+
 1. Пример выборки всего содержимого из таблицы.
 
         SELECT *
@@ -29,4 +31,18 @@
 
         SELECT DISTINCT [Color], [Size]
         FROM [Production].[Product]
-### ORDER BY
+### ORDER BY - упорядочение данных.
+Это завершающая часть запроса. 
+Ключевое слово DESC - упорядочивание по убыванию, ASC - по возрастанию. По умолчанию упорядочение будет по возрастанию.
+
+1. Каждый столбец упорядочивается своим образом.
+
+        SELECT [FirstName], [MiddleName], [LastName]
+        FROM [Person].[Person]
+        ORDER BY [FirstName] ASC, [MiddleName] DESC, [LastName] ASC
+2. Упорядочивание по позиции в выводе - в данном примере, по второму столбцу.
+
+        SELECT [Name], [StandardCost] - [ListPrice]
+        FROM [Production].[Product]
+        ORDER BY 2
+3. 
