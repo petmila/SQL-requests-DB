@@ -72,4 +72,28 @@
 которых цвет определен и цена отлична от нуля, и отсортировать полученный
 список по возрастанию цвета товара и убыванию отпускной цены.
 
-14.
+        SELECT [Name], [Color], [ListPrice]
+        FROM [AdventureWorks2019].[Production].[Product]
+        WHERE [Color] IS NOT NULL AND [ListPrice] != 0
+        ORDER BY 2 ASC, 3 DESC
+
+13. Получить название продукта и разницу между отпускной стандартной ценой
+продукта и стандартной ценой продукта для тех товаров, у которых эти
+показатели не равны нулю.
+
+        SELECT [Name], [ListPrice] - [StandardCost] 
+        FROM [AdventureWorks2019].[Production].[Product]
+        WHERE [ListPrice] !=0 AND [StandardCost] != 0
+        
+14. Найти название самого дорогого товара, исходя из предположения, что нет
+двух товаров с одинаковой ценой
+
+        SELECT TOP 1 [Name] 
+        FROM [AdventureWorks2019].[Production].[Product]
+        ORDER BY [Name] DESC
+
+15. Найти список товаров, произведенных в 2005 году
+    
+        SELECT [Name] 
+        FROM [AdventureWorks2019].[Production].[Product]
+        WHERE datepart(YEAR, [SellStartDate]) = 2005
