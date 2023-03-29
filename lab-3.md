@@ -57,4 +57,27 @@
 кредитным рейтингом (CreditRatINg принимает целые значение от
 минимального, равного 1, до максимального, равного 5)
 
-7. 
+        SELECT Count(distinct p.ProductID)
+        FROM [Purchasing].[ProductVendor] AS p JOIN [Purchasing].[Vendor] AS v ON p.BusinessEntityID=v.BusinessEntityID
+        WHERE v.CreditRating = 1
+        
+7. Найти, сколько товаров приходится на каждый кредитный рейтинг, т.е.
+сформировать таблицу, первая колонка которой будет содержать номер
+кредитного рейтинга, вторая – количество товаров, поставляемых всеми
+поставщиками, имеющими соответствующий кредитный рейтинг. Необходимо
+сформировать универсальный запрос, который будет валидным и в случае
+появления новых значений кредитного рейтинга
+       
+       SELECT v.CreditRating, Count(distinct p.ProductID) as products
+       FROM [Purchasing].[ProductVendor] AS p JOIN [Purchasing].[Vendor] AS v ON p.BusinessEntityID=v.BusinessEntityID
+       Group by v.CreditRating
+       
+8. Найти количество цветов товаров, приходящихся на каждую категорию, без
+учета товаров, для которых цвет не определен
+
+       SELECT COUNT(DISTINCT [Color])
+       FROM [Production].[Product] AS P INNER JOIN [Production].[ProductSubcategory] AS PSC
+       ON P.ProductSubcategoryID=PSC.ProductSubcategoryID RIGHT JOIN [Production].[ProductCategory] AS PC
+       ON PSC.ProductCategoryID=PC.ProductCategoryID
+       GROUP BY PC.ProductCategoryID
+
