@@ -44,7 +44,6 @@
     ORDER BY SalesPersonID, SalesYear
 
 * Примеры с решениями
-1.
 
 3. Вывести на экран следующую информацию: название товара, название
 категории к которой он относится и общее количество товаров в этой
@@ -130,5 +129,18 @@
 	        From SubCategoryData
         )
 
-7.
+7. Найти для каждого чека количество категорий и подкатегорий его товаров
+
+
+	WITH OrderData(OrderId, CountCategory, CountSubcategory) as
+	(
+		SELECT s.SalesOrderID, count(distinct ps.ProductSubcategoryID), count(distinct ps.ProductCategoryID)
+		From Sales.SalesOrderDetail as s join Production.Product as p on
+		s.ProductId = p.ProductId join Production.ProductSubcategory as ps on
+		ps.ProductSubcategoryID = p.ProductSubcategoryID
+		Group by s.SalesOrderID
+	)
+	Select OrderId, CountCategory, CountSubcategory
+	From OrderData
+	Order by OrderId
  
